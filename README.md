@@ -2,12 +2,14 @@
 
 Hi, I really enjoyed working on this assignment. I hope you like the solution.
 
-Since there was no contracts, my idea was a flow to create and manage the existing devices and a flow to save the
+- Since there were no contracts, my idea was a flow to create and manage the existing devices and a flow to save the
 readings and query for the aggregations (as requested in the document).
+- The system can't save a reading from an unknown device previously saved.
+- For saving the readings, I left an open endpoint, and I manually map the devices we are accepting. 
+- MongoDB was chosen because of the unstructured data and the amount of savings per second.
+- I used MongoDB time series and some indexes to improve the performance of the aggregation.
+- I also assume the number of devices would not be that high, that's why I left a find all devices.
 
-For saving the readings I left an open endpoint and I manually map the devices we are accepting.
-
-I also assume the amount of devices would not be that high, thats why I left a find all devices.
 
 Performance: 
 - I tested saving 600 readings per second and it was working fine
@@ -21,7 +23,7 @@ POST : /simulator/on (you can find the CURL bellow)
 # Tech stack
 
 - Java 21
-- Mongo DB
+- MongoDB
 - Spring boot 3
 - Rest Assured
 - Test Containers
