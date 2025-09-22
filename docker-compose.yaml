@@ -1,0 +1,36 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo_container
+    restart: always    
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - iot-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iot_app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=iotdb
+    networks:
+      - iot-network
+
+volumes:
+  mongo_data:
+    driver: local
+
+networks:
+  iot-network:
+    driver: bridge

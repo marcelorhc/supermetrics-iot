@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: iotdb
+      auto-index-creation: true
+
+logging:
+  level:
+    root: INFO
+    org:
+      supermetrics: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: org.supermetrics.controller
